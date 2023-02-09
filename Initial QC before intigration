@@ -1,0 +1,16 @@
+#Set Environment
+packages <- c("devtools","tidyverse","Seurat",
+              "SingleCellExperiment","remotes","cowplot","R.utils",
+              "cowplot","seuratwrappers","scater")
+invisible(lapply(packages, library, character.only = TRUE))
+#Choose working directory#Where the filesare#where you want to save
+setwd("//E/user_data/zjsun/group/Rajeev Vikram/scRNASeq")
+ls()
+#Read 10x outs file
+p9.data <- Read10X("/x_scRNA/32848_count_mm10/outs/filtered_feature_bc_matrix")
+P35.data <- Read10X("/X_32414_count_mm10/outs/filtered_feature_bc_matrix")
+#Create Seurat Object
+s_obj1 <- CreateSeuratObject(counts = p9.data,  min.cells = 3, min.features = 500, project = "ARCreER_P9")
+s_obj2 <- CreateSeuratObject(counts = P35.data,  min.cells = 3, min.features = 500, project = "ARCreER_P35")
+as.data.frame(s_obj2@assays$RNA@counts[1:10, 1:2])
+head(s_obj1@meta.data, 10)
