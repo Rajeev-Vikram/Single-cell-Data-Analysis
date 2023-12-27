@@ -1,10 +1,30 @@
-#Set Environment
+##Single_Cell_Analysis_Env
+###Download Essential Packages###
+install.packages("pkgbuild") 
+install.packages("devtools")
+install.packages("R.utils")
+remotes::install_github("satijalab/seurat", "seurat5", quiet = F)
+remotes::install_github('satijalab/seurat-wrappers')
+devtools::install_github('cole-trapnell-lab/monocle3')
+BiocManager::version() #Check Bioconductor version
+BiocManager::install(c('BiocGenerics', 'DelayedArray', 'DelayedMatrixStats',
+                       'limma', 'lme4', 'S4Vectors', 'SingleCellExperiment',
+                       'SummarizedExperiment', 'batchelor', 'HDF5Array',
+                       'terra', 'ggrastr'))
+BiocManager::install("tricycle")
+BiocManager::install("ScaledMatrix")
+BiocManager::install("MAST")
+BiocManager::install("scran")
+BiocManager::install("ComplexHeatmap")
+BiocManager::install(c('GOSemSim', 'clusterProfiler', 'DOSE',
+                       'enrichplot', 'ReactomePA', 'ChIPseeker', 'meshes'))
+###Set Environment
 packages <- c("devtools","tidyverse","Seurat",
               "SingleCellExperiment","remotes","cowplot","R.utils",
               "cowplot","seuratwrappers","scater")
 invisible(lapply(packages, library, character.only = TRUE))
 #Choose working directory#Where the filesare#where you want to save
-setwd("//E/user_data/zjsun/group/Rajeev Vikram/scRNASeq")
+setwd("//E/user_data/directory1/group/Rajeev Vikram/scRNASeq")
 ls()
 #Read 10x outs file
 p9.data <- Read10X("/x_scRNA/32848_count_mm10/outs/filtered_feature_bc_matrix")
